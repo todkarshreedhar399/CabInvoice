@@ -1,34 +1,21 @@
-package com.bl;
-
 public class InvoiceSummary {
+    private int numberOfRides;
+    private double totalFare;
+    private double averageFare;
 
-	private int numberOfRides;
-	private double totalFare;
-	private double averageFare;
+    public InvoiceSummary(int numberOfRides, double totalFare) {
+        this.numberOfRides = numberOfRides;
+        this.totalFare = totalFare;
+        this.averageFare = this.totalFare / this.numberOfRides;
+    }
 
-	public InnoiceSummary(int numberOfRides, double totaleFare) {
-		this.numberOfRides = numberOfRides;
-		this.totalFare = totaleFare;
-		this.averageFare = this.totalFare / this.numberOfRides;
-
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		InnoiceSummary other = (InnoiceSummary) obj;
-		if (Double.doubleToLongBits(averageFare) != Double.doubleToLongBits(other.averageFare))
-			return false;
-		if (numberOfRides != other.numberOfRides)
-			return false;
-		if (Double.doubleToLongBits(totalFare) != Double.doubleToLongBits(other.totalFare))
-			return false;
-		return true;
-	}
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InvoiceSummary that = (InvoiceSummary) o;
+        return numberOfRides == that.numberOfRides
+                && Double.compare(that.totalFare, totalFare) == 0
+                && Double.compare(that.averageFare, averageFare) == 0;
+    }
 }
